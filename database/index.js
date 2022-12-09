@@ -5,7 +5,8 @@ let repoSchema = mongoose.Schema({
   _id: Number,
   name: String,
   owner: String,
-  link: String
+  link: String,
+  description: String
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
@@ -20,7 +21,8 @@ let save = (repos) => {
       _id: repo.id,
       name: repo.name,
       owner: repo.owner.login,
-      link: repo.html_url
+      link: repo.html_url,
+      description: repo.description
     });
     return newRepo.save();
   });

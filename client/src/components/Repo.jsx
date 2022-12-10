@@ -1,14 +1,15 @@
 import React from 'react';
 
 const Repo = (props) => {
-  const ulStyle = {border: '2px solid', width:'max', listStyleType:'none'}
+  const {name, des, owner, link} = props.repo;
+  const ulStyle = {border: '2px solid', width:'500px', listStyleType:'none'}
 
   return (
     <ul style={ulStyle}>
-      <li> Repo name: {props.repo.name} </li>
-      <li> Description: {props.repo.description} </li>
-      <li> Owner: {props.repo.owner} </li>
-      <li> Link: {props.repo.link} </li>
+      <a href={link} target="_blank"> Repository name: {name} </a>
+      <li> Description: {des} </li>
+      <li> Owner: {owner} </li>
+      <li> Link: {link} </li>
     </ul>
   )
 }

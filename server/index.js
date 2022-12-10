@@ -37,7 +37,7 @@ app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
 
-  db.Repo.find().limit(25)
+  db.Repo.find().sort({x:1}).limit(25)
     .then((repos) => {
       res.status(201).send(repos);
     })

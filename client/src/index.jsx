@@ -39,19 +39,22 @@ const App = (props) => {
   function search(term) {
     console.log(`${term} was searched`);
 
-    var data = {username: term}
-    $.ajax({
-      type: "POST",
-      url: 'http://localhost:1128/repos',
-      data: JSON.stringify(data),
-      dataType: 'json',
-      contentType: 'application/json',
-      success: (data) => {
-        console.log('Post successfully!')
-      },
-      error: (j, t, err) => {
-        console.log('ERROR in ajax POST request', err)
-      }
+    return new Promise((resolve, reject) => {
+      var data = {username: term}
+      $.ajax({
+        type: "POST",
+        url: 'http://localhost:1128/repos',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        contentType: 'application/json',
+        success: (data) => {
+          resolve(data);
+        },
+        error: (j, t, err) => {
+          console.log('ERROR in ajax POST request', err)
+          reject(err);
+        }
+      });
     });
   }
 
@@ -59,7 +62,7 @@ const App = (props) => {
   <div>
     <h1>Github Fetcher</h1>
     <RepoList repos={repos}/>
-    <Search onSearch={search.bind(this)}/>
+    <Search onSearch={search.bind(this)} fetch={fetch} setRepos={setRepos}/>
   </div>
   );
 

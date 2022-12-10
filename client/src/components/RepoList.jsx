@@ -5,7 +5,7 @@ const RepoList = (props) => (
   <div>
     <h3> Repo List Component </h3>
     There are {props.repos.length} repos.
-    {props.repos.reverse().map((repo) => <Repo key={repo._id} repo={repo}/>)}
+    {props.repos.map((repo) => <Repo key={repo._id} repo={repo}/>)}
   </div>
 )
 
